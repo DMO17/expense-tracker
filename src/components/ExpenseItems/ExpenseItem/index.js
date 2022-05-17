@@ -12,6 +12,7 @@ export const ExpenseItem = ({ date, title, amount }) => {
         <div className="expense-date__day">{day}</div>
         <div className="expense-date__year">{year}</div>
       </div>
+
       <div className="expense-item__description">
         <h2>{title}</h2>
         <div className="expense-item__price">{amount}</div>
