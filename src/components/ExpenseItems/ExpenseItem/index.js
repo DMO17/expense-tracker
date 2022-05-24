@@ -6,7 +6,7 @@ export const ExpenseItem = ({ date, title, amount }) => {
   const year = date.getFullYear();
 
   return (
-    <div className="expense-item">
+    <div className="expense-item ">
       <div className="expense-date">
         <div className="expense-date__month">{month}</div>
         <div className="expense-date__day">{day}</div>
@@ -17,6 +17,7 @@ export const ExpenseItem = ({ date, title, amount }) => {
         <h2>{title}</h2>
         <div className="expense-item__price">{amount}</div>
       </div>
+      <button>change title</button>
     </div>
   );
 };
