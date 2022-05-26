@@ -1,43 +1,32 @@
+import { useState } from "react";
+import { ExpensesFilter } from "../components/ExpenseFilter";
 import { ExpenseForm } from "../components/ExpenseForm";
 import { ExpenseItems } from "../components/ExpenseItems";
+import { expenseData } from "../Data";
 
 export const ExpenseTracker = () => {
-  let data = [
-    {
-      id: 1,
-      date: new Date(2020, 0, 14),
-      title: "Car Insurance",
-      amount: "£294.658",
-    },
-    {
-      id: 2,
-      date: new Date(2020, 6, 14),
-      title: "Car Insurance",
-      amount: "£294.654",
-    },
-    {
-      id: 3,
-      date: new Date(2020, 2, 14),
-      title: "Car Insurance",
-      amount: "£264.656",
-    },
-    {
-      id: 4,
-      date: new Date(2020, 11, 14),
-      title: "Car Insurance",
-      amount: "£294.658",
-    },
-  ];
+  const [expenses, setExpenses] = useState(expenseData);
+  const [filteredYear, setFilteredYear] = useState("2019");
 
-  const saveExpenseHandlerData = (expenses) => {
-    const expenseData = [{ id: Math.random.toString(), ...expenses }, ...data];
-
-    console.log(expenseData);
+  const filteredYearHandler = (selectedYear) => {
+    setFilteredYear(selectedYear);
+    console.log(selectedYear, filteredYear);
   };
+
+  const saveExpenseHandlerData = (expense) => {
+    const newExpense = { id: Math.random(), ...expense };
+
+    setExpenses((prevState) => [newExpense, ...prevState]);
+  };
+
   return (
     <div>
       <ExpenseForm saveExpenseHandlerData={saveExpenseHandlerData} />
-      <ExpenseItems expenseData={data} />
+      <ExpensesFilter
+        onChangeYearFilter={filteredYearHandler}
+        selectedYear={filteredYear}
+      />
+      <ExpenseItems expenseData={expenses} />
     </div>
   );
 };
