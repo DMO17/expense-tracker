@@ -8,16 +8,19 @@ export const ExpenseTracker = () => {
   const [expenses, setExpenses] = useState(expenseData);
   const [filteredYear, setFilteredYear] = useState("2019");
 
-  const filteredYearHandler = (selectedYear) => {
-    setFilteredYear(selectedYear);
-    console.log(selectedYear, filteredYear);
-  };
-
   const saveExpenseHandlerData = (expense) => {
     const newExpense = { id: Math.random(), ...expense };
 
     setExpenses((prevState) => [newExpense, ...prevState]);
   };
+
+  const filteredYearHandler = (selectedYear) => {
+    setFilteredYear(selectedYear);
+  };
+
+  const filteredExpenseItems = expenses.filter(
+    (expenseItem) => filteredYear === expenseItem.date.getFullYear().toString()
+  );
 
   return (
     <div>
@@ -26,7 +29,7 @@ export const ExpenseTracker = () => {
         onChangeYearFilter={filteredYearHandler}
         selectedYear={filteredYear}
       />
-      <ExpenseItems expenseData={expenses} />
+      <ExpenseItems expenseData={filteredExpenseItems} />
     </div>
   );
 };
