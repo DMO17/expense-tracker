@@ -5,12 +5,13 @@ export const ExpenseForm = ({ saveExpenseHandlerData }) => {
   const [titleInput, setTitleInput] = useState("");
   const [amountInput, setAmountInput] = useState("");
   const [dateInput, setDateInput] = useState("");
+  const [showForm, setShowForm] = useState(false);
 
   const titleChangeHandler = (event) => setTitleInput(event.target.value);
-
   const amountChangeHandler = (event) => setAmountInput(event.target.value);
-
   const dateChangeHandler = (event) => setDateInput(event.target.value);
+
+  const handleShowForm = () => setShowForm((prevState) => !prevState);
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -26,10 +27,12 @@ export const ExpenseForm = ({ saveExpenseHandlerData }) => {
     setTitleInput("");
     setAmountInput("");
     setDateInput("");
+
+    handleShowForm();
   };
 
-  return (
-    <div className="new-expense">
+  const ExpenseItemForm = () => {
+    return (
       <form onSubmit={submitHandler}>
         <div className="new-expense__controls">
           <div className="new-expense__control">
@@ -64,9 +67,22 @@ export const ExpenseForm = ({ saveExpenseHandlerData }) => {
           </div>
         </div>
         <div className="new-expense__actions">
+          <button type="button" onClick={handleShowForm}>
+            Cancel
+          </button>
           <button type="submit">Submit</button>
         </div>
       </form>
+    );
+  };
+
+  return (
+    <div className="new-expense">
+      {showForm ? (
+        <ExpenseItemForm />
+      ) : (
+        <button onClick={handleShowForm}>Add Expense</button>
+      )}
     </div>
   );
 };

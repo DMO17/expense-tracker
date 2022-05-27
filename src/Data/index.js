@@ -7,7 +7,7 @@ export const expenseData = [
   },
   {
     id: 2,
-    date: new Date(2019, 6, 14),
+    date: new Date(2020, 6, 14),
     title: "WATER BILLS",
     amount: "£294.654",
   },
