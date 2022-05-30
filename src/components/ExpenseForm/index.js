@@ -18,7 +18,7 @@ export const ExpenseForm = ({ saveExpenseHandlerData }) => {
 
     const expenseData = {
       title: titleInput,
-      amount: `£${amountInput}`,
+      amount: amountInput,
       date: new Date(dateInput),
     };
 

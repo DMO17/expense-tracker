@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ExpenseChart } from "../components/ExepenseChart";
 
 import { ExpensesFilter } from "../components/ExpenseFilter";
 import { ExpenseForm } from "../components/ExpenseForm";
@@ -31,6 +32,7 @@ export const ExpenseTracker = () => {
         onChangeYearFilter={filteredYearHandler}
         selectedYear={filteredYear}
       />
+      <ExpenseChart expenses={filteredExpenseItems} />
       <ExpenseItems expenseData={filteredExpenseItems} />
     </div>
   );
