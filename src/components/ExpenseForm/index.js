@@ -18,7 +18,7 @@ export const ExpenseForm = ({ saveExpenseHandlerData }) => {
 
     const expenseData = {
       title: titleInput,
-      amount: amountInput,
+      amount: +amountInput,
       date: new Date(dateInput),
     };
 
@@ -48,7 +48,7 @@ export const ExpenseForm = ({ saveExpenseHandlerData }) => {
             <label>Amount</label>
             <input
               type="number"
-              min="0.00"
+              min="0.01"
               step="0.01"
               value={amountInput}
               onChange={amountChangeHandler}
